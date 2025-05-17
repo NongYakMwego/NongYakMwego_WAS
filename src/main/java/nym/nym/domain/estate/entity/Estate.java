@@ -6,15 +6,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import nym.nym.global.common.entity.BaseEntity;
+import nym.nym.global.util.UuidUtil;
 
 @Entity
-@AllArgsConstructor
 @NoArgsConstructor
-public class Estate {
+public class Estate extends BaseEntity {
     @Id
     @Column(name = "estate_id",nullable = false,unique = true)
     private String estateId;
 
     @Embedded
     private Location location;
+
+    public Estate(Location location){
+        this.estateId= UuidUtil.createUuid();
+        this.location=location;
+    }
 }
