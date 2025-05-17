@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: NYM
+  # JPA
+  jpa:
+    database: postgresql
+    hibernate:
+      ddl-auto: update
+
+  # DB
+  datasource:
+    hikari:
+      maximum-pool-size: 4
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: kimdoyeon
+    password:
+    driver-class-name: org.postgresql.Driver
+
+
+
