@@ -16,5 +16,13 @@ spring:
     password:
     driver-class-name: org.postgresql.Driver
 
+  # Mongo DB
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: nym
+      username: tkv00
+      password: rlaehdus00
 
 

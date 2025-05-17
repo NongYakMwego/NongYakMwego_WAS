@@ -1,7 +1,11 @@
 package nym.nym.domain.pesticide_usage.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import nym.nym.domain.crop.entity.Crop;
+import nym.nym.domain.estate.entity.Estate;
+import nym.nym.domain.pesticide.entity.Pesticide;
 import nym.nym.global.common.entity.BaseEntity;
 import nym.nym.global.util.UuidUtil;
 import org.hibernate.annotations.UuidGenerator;
@@ -11,7 +15,7 @@ import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class PesticideUsage extends BaseEntity {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -31,8 +35,18 @@ public class PesticideUsage extends BaseEntity {
     @Column(name = "amount_unit",nullable = false)
     private UNIT unit;
 
-    public PesticideUsage(LocalDateTime usedDate,Integer amountUsed,UNIT unit){
-        this.usageId= UuidUtil.createUuid();
+    //토지랑 양방향 다대일
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "estate_id")
+    private Estate estate;
 
-    }
+    //농약이랑 양방향 다대일
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "pesticide_id")
+    private Pesticide pesticide;
+
+    //농작물이랑 양방향 다대일
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "crop_id")
+    private Crop crop;
 }
