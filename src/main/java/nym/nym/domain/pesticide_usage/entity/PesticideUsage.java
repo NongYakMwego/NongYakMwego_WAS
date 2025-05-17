@@ -4,16 +4,19 @@ import jakarta.persistence.*;
 import lombok.NoArgsConstructor;
 import nym.nym.global.common.entity.BaseEntity;
 import nym.nym.global.util.UuidUtil;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @NoArgsConstructor
 
 public class PesticideUsage extends BaseEntity {
     @Id
-    @Column(name = "usage_id",unique = true)
-    private String usageId;
+    @GeneratedValue(generator = "UUID")
+    @UuidGenerator
+    private UUID usageId;
 
     //농약 사용 날짜
     @Column(name = "used_date",nullable = false)
