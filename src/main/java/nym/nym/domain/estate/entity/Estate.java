@@ -7,10 +7,10 @@ import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import nym.nym.global.common.entity.BaseEntity;
-import nym.nym.global.util.UuidUtil;
 
 @Entity
 @NoArgsConstructor
+@AllArgsConstructor
 public class Estate extends BaseEntity {
     @Id
     @Column(name = "estate_id",nullable = false,unique = true)
@@ -18,9 +18,4 @@ public class Estate extends BaseEntity {
 
     @Embedded
     private Location location;
-
-    public Estate(Location location){
-        this.estateId= UuidUtil.createUuid();
-        this.location=location;
-    }
 }
