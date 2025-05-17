@@ -1,4 +1,4 @@
-package nym.nym.domain.crop.vo;
+package nym.nym.domain.crop.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
