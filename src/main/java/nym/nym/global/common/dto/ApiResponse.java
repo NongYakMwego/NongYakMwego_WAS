@@ -3,6 +3,7 @@ package nym.nym.global.common.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.annotation.Nullable;
+import nym.nym.global.exception.CustomException;
 import org.springframework.http.HttpStatus;
 
 public record ApiResponse<T> (
@@ -29,7 +30,7 @@ public record ApiResponse<T> (
 
     //실패 응답 생성자
     public static <T> ApiResponse<T> fail(final CustomException e){
-
+        return new ApiResponse<>(e.getErrorCode().getHttpStatus(), false,null,ExceptionDto.of(e.getErrorCode()));
     }
 
 

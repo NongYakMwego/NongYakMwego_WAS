@@ -25,4 +25,7 @@ spring:
       username: tkv00
       password: rlaehdus00
 
+  web:
+    resources:
+      add-mappings: false
 
