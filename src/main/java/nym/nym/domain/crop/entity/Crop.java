@@ -2,6 +2,7 @@ package nym.nym.domain.crop.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import nym.nym.domain.crop_pest.entity.CropPest;
@@ -17,6 +18,7 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class Crop extends BaseEntity {
     @Column(name = "crop_id",nullable = false,unique = true)
     @Id

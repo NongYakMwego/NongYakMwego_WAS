@@ -4,11 +4,13 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Lob;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Embeddable
 @AllArgsConstructor
 @NoArgsConstructor
+@Getter
 public class CropDetail {
     //작물 설명
     @Lob
@@ -25,6 +27,9 @@ public class CropDetail {
 
     //농작물 개수 감소 함수
     public void decreaseCrop(){
+        if(this.cropCount<0){
+            this.cropCount=0;
+        }
         this.cropCount--;
     }
 
