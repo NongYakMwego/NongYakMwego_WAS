@@ -3,7 +3,7 @@ package nym.nym.global.common.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.annotation.Nullable;
-import nym.nym.global.exception.CustomException;
+import nym.nym.exception.CustomException;
 import org.springframework.http.HttpStatus;
 
 public record ApiResponse<T> (
