@@ -25,5 +25,5 @@ public class CropPestEntity extends BaseEntity {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "pest_id",nullable = false)
-    private Pest pest;
+    private PestEntity pest;
 }

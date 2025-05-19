@@ -1,4 +1,4 @@
-package nym.nym.exception;
+package nym.nym.global.exception;
 
 import lombok.extern.slf4j.Slf4j;
 import nym.nym.global.common.dto.ApiResponse;

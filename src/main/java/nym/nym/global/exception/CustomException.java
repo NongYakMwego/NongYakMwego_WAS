@@ -1,4 +1,4 @@
-package nym.nym.exception;
+package nym.nym.global.exception;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
