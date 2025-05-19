@@ -22,10 +22,10 @@ public class Crop {
 
     /**
      * @apiNote 작물 개수 변경 메서드
-     * @param cropCount 변경할 작물 개수
+     * @param newCropCount 변경할 작물 개수
      */
-    public void changeCropCount(Integer cropCount){
-        this.cropCount=cropCount;
+    public void changeCropCount(Integer newCropCount){
+        this.cropCount=newCropCount;
     }
 
 }
