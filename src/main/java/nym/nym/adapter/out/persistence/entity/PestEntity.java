@@ -28,4 +28,9 @@ public class PestEntity extends BaseEntity {
     //해충-농작물 중간 테이블
     @OneToMany(mappedBy = "pest",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<CropPestEntity> cropPests=new ArrayList<>();
+
+    //유저-해충 중간 테이블 매핑
+    @OneToMany(mappedBy = "pest",cascade = CascadeType.ALL,orphanRemoval = true)
+    private List<UserPestEntity> userPestEntities=new ArrayList<>();
+
 }

@@ -10,6 +10,7 @@ import nym.nym.global.common.entity.BaseEntity;
 @NoArgsConstructor
 @Getter
 @Entity
+@Table(name = "user_pest")
 public class UserPestEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,9 +19,11 @@ public class UserPestEntity extends BaseEntity {
 
     //유저 테이블과 다대일 매핑
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 
     //해충 테이블과 다대일 매핑
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pest_id")
     private PestEntity pest;
 }

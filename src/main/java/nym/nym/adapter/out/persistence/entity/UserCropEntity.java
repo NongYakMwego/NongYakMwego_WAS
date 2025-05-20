@@ -10,6 +10,7 @@ import nym.nym.global.common.entity.BaseEntity;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name = "user_crop")
 public class UserCropEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,8 +22,10 @@ public class UserCropEntity extends BaseEntity {
     private Integer cropCount=0;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "crop_id")
     private CropEntity crop;
 
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
     private UserEntity user;
 }
