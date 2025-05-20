@@ -19,8 +19,6 @@ public class CropDetail {
     @Column(name = "crop_name",length = 50,unique = true,nullable = false)
     private String cropName;
 
-    //농작물 개수
-    @Column(name = "crop_count")
-    private Integer cropCount=0;
+
 
 }
