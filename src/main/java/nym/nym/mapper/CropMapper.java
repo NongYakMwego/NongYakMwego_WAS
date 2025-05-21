@@ -4,7 +4,7 @@ import nym.nym.crop.adapter.out.persistence.CropEntity;
 import nym.nym.crop.adapter.in.web.CropRequest;
 import nym.nym.crop.adapter.in.web.CropResponse;
 import nym.nym.crop.application.port.in.CreateCropCommand;
-import nym.nym.domain.model.Crop;
+import nym.nym.crop.domain.Crop;
 
 public interface CropMapper {
     CreateCropCommand requestDtoToCommand(CropRequest cropRequest);

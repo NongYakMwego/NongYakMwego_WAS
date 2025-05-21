@@ -1,6 +1,6 @@
 package nym.nym.data.adapter.out;
 
-import nym.nym.domain.model.Crop;
+import nym.nym.crop.domain.Crop;
 
 import java.io.InputStream;
 import java.util.List;

@@ -1,9 +1,11 @@
-package nym.nym.crop.adapter.in.web;
+package nym.nym.crop.adapter.in.web.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import nym.nym.crop.adapter.in.web.CropRequest;
+import nym.nym.crop.adapter.in.web.CropResponse;
 import nym.nym.crop.application.port.in.CreateCropCommand;
-import nym.nym.crop.application.port.in.CropUseCase;
+import nym.nym.crop.application.port.in.CreateCropUseCase;
 import nym.nym.global.common.dto.ApiResponse;
 import nym.nym.mapper.CropMapper;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +17,8 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/crop")
 @Slf4j
-public class CropController {
-    private final CropUseCase cropUseCase;
+public class CropWriteController {
+    private final CreateCropUseCase cropUseCase;
     private final CropMapper cropMapper;
 
     /**
@@ -37,19 +39,4 @@ public class CropController {
         return ResponseEntity.ok(ApiResponse.ok(cropResponse));
     }
 
-    /**
-     * @param cropName 작물 이름
-     * @param header JWT
-     * @return 작물 리스트를 조회한다.
-     */
-    @GetMapping("/fetch")
-    public ResponseEntity<ApiResponse<List<CropResponse>>> fetchCrop(
-            @RequestParam("crop-name") String cropName,
-            @RequestHeader("Authorization") String header
-    ){
-        List<CropResponse> cropResponses=cropUseCase.fetchCrops(cropName);
-        log.info("CropController : {} method : {} Header : {}",cropName,"fetchCrop",header);
-
-        return ResponseEntity.ok(ApiResponse.ok(cropResponses));
-    }
 }

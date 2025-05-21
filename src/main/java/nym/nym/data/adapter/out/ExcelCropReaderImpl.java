@@ -2,7 +2,7 @@
 package nym.nym.data.adapter.out;
 
 import lombok.extern.slf4j.Slf4j;
-import nym.nym.domain.model.Crop;
+import nym.nym.crop.domain.Crop;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;

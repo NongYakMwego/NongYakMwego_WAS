@@ -5,7 +5,7 @@ import nym.nym.crop.adapter.out.persistence.CropEntity;
 import nym.nym.application.port.in.command.CropCommand;
 import nym.nym.crop.adapter.in.web.CropRequest;
 import nym.nym.crop.adapter.in.web.CropResponse;
-import nym.nym.domain.model.Crop;
+import nym.nym.crop.domain.Crop;
 
 public class CropMapperImpl implements CropMapper{
     @Override

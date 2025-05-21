@@ -1,4 +1,4 @@
-package nym.nym.domain.model;
+package nym.nym.estate.domain;
 
 import lombok.*;
 

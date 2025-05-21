@@ -1,4 +1,4 @@
-package nym.nym.domain.model;
+package nym.nym.pesticide_usage.domain;
 
 import lombok.*;
 import nym.nym.pesticide_usage.adapter.out.persistence.UNIT;

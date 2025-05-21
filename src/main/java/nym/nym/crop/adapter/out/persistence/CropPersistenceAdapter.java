@@ -4,16 +4,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nym.nym.crop.application.port.out.CreateCropPort;
 import nym.nym.crop.application.port.out.FetchCropPort;
-import nym.nym.domain.model.Crop;
+import nym.nym.crop.domain.Crop;
 import nym.nym.mapper.CropMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-
 @RequiredArgsConstructor
 @Component
 @Slf4j
-public class CropRepositoryAdapter implements CreateCropPort, FetchCropPort {
+
+public class CropPersistenceAdapter implements CreateCropPort, FetchCropPort {
     private final CropRepository cropRepository;
     private final CropMapper cropMapper;
 
@@ -41,6 +41,7 @@ public class CropRepositoryAdapter implements CreateCropPort, FetchCropPort {
      * @param crop 작물 도메인
      * @return 저장된 작물 도메인 반환
      */
+
     @Override
     public Crop createCrop(Crop crop) {
         CropEntity cropEntity=cropMapper.domainToEntity(crop);

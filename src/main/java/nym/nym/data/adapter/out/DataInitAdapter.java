@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import nym.nym.crop.adapter.out.persistence.CropEntity;
 import nym.nym.crop.adapter.out.persistence.CropRepository;
 import nym.nym.crop.application.port.out.CreateCropPort;
-import nym.nym.domain.model.Crop;
+import nym.nym.crop.domain.Crop;
 import nym.nym.mapper.CropMapper;
 import org.springframework.stereotype.Component;
 
