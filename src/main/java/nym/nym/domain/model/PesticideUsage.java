@@ -1,7 +1,7 @@
 package nym.nym.domain.model;
 
 import lombok.*;
-import nym.nym.adapter.out.persistence.entity.UNIT;
+import nym.nym.pesticide_usage.adapter.out.persistence.UNIT;
 
 import java.time.LocalDateTime;
 import java.util.UUID;

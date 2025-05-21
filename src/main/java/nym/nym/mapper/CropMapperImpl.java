@@ -1,9 +1,10 @@
 package nym.nym.mapper;
 
-import nym.nym.adapter.out.persistence.entity.CropEntity;
-import nym.nym.application.command.CropCommand;
-import nym.nym.domain.crop.dto.CropRequest;
-import nym.nym.domain.crop.dto.CropResponse;
+import nym.nym.crop.adapter.out.persistence.CropDetail;
+import nym.nym.crop.adapter.out.persistence.CropEntity;
+import nym.nym.application.port.in.command.CropCommand;
+import nym.nym.crop.adapter.in.web.CropRequest;
+import nym.nym.crop.adapter.in.web.CropResponse;
 import nym.nym.domain.model.Crop;
 
 public class CropMapperImpl implements CropMapper{
@@ -19,7 +20,10 @@ public class CropMapperImpl implements CropMapper{
 
     @Override
     public CropEntity domainToEntity(Crop crop) {
-        return null;
+        return CropEntity.builder()
+                .cropId(crop.getCropId())
+                .cropDetail(new CropDetail(crop.getCropDescription(),crop.getCropName()))
+                .build();
     }
 
     @Override
