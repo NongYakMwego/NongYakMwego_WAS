@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import nym.nym.pest_pesticide.adapter.out.persistence.PestPesticideEntity;
 import nym.nym.pesticide_usage.adapter.out.persistence.PesticideUsageEntity;
-import nym.nym.crop.adapter.out.persistence.CropEntity;
+import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
 import nym.nym.global.common.entity.BaseEntity;
 
 import java.util.ArrayList;

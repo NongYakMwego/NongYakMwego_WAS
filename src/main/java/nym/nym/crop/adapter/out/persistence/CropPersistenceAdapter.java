@@ -2,13 +2,16 @@ package nym.nym.crop.adapter.out.persistence;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
+import nym.nym.crop.adapter.out.persistence.mapper.CropMapper;
 import nym.nym.crop.application.port.out.CreateCropPort;
 import nym.nym.crop.application.port.out.FetchCropPort;
 import nym.nym.crop.domain.Crop;
-import nym.nym.mapper.CropMapper;
+import nym.nym.crop.domain.CropInfo;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+
 @RequiredArgsConstructor
 @Component
 @Slf4j
@@ -24,16 +27,19 @@ public class CropPersistenceAdapter implements CreateCropPort, FetchCropPort {
      * @return 도메인 향태 작물 리스트 조회
      */
     @Override
-    public List<Crop> fetchCrops(String cropName) {
-        //1. 작물 엔티티 조회
+    public List<CropInfo> fetchCrops(String cropName) {
+        //작물Info 엔티티 조회
         log.info("CropRepository : {} method : {}",cropName,"findByCropDetail_CropNameContaining");
-        List<CropEntity> cropEntities=cropRepository.findByCropDetail_CropNameContaining(cropName);
+        return cropRepository.fetchCropsList(cropName);
+    }
 
-        //2. 작물 엔티티 -> 도메인 변경
-        log.info("CropRepositoryAdapter : {} method : {}",cropName, "fetchCrops");
-        return cropEntities.stream()
-                .map(cropMapper::entityToDomain)
-                .toList();
+    @Override
+    public Crop fetchCrop(Long cropId) {
+        //1. cropEntity 조회
+        CropEntity cropEntity=cropRepository.fetchCropSingle(cropId);
+
+        //2. crop 도메인으로 변경
+        return cropMapper.entityToDomain(cropEntity);
     }
 
     /**

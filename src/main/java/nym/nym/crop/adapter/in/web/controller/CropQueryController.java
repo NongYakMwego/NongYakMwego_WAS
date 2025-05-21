@@ -5,7 +5,6 @@ import lombok.extern.slf4j.Slf4j;
 import nym.nym.crop.adapter.in.web.CropResponse;
 import nym.nym.crop.application.port.in.FetchCropUseCase;
 import nym.nym.global.common.dto.ApiResponse;
-import nym.nym.mapper.CropMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,20 +15,30 @@ import java.util.List;
 @Slf4j
 public class CropQueryController {
     private final FetchCropUseCase fetchCrops;
-    private final CropMapper cropMapper;
+
     /**
+     * @apiNote
      * @param cropName 작물 이름
-     * @param header JWT
      * @return 작물 리스트를 조회한다.
      */
-    @GetMapping("/fetch")
-    public ResponseEntity<ApiResponse<List<CropResponse>>> fetchCrop(
-            @RequestParam("crop-name") String cropName,
-            @RequestHeader("Authorization") String header
+    @GetMapping("/fetch-list")
+    public ResponseEntity<ApiResponse<List<CropResponse>>> fetchCrops(
+            @RequestParam("cropName") String cropName
     ){
         List<CropResponse> cropResponses=fetchCrops.fetchCropByList(cropName);
-        log.info("CropController : {} method : {} Header : {}",cropName,"fetchCrop",header);
+        log.info("CropController : {} method : {} ",cropName,"fetchCrop");
 
         return ResponseEntity.ok(ApiResponse.ok(cropResponses));
     }
+
+    @GetMapping("/fetch-single")
+    public ResponseEntity<ApiResponse<CropResponse>> fetchCrop(
+            @RequestParam("cropId") Long cropId
+    ){
+        CropResponse cropResponse=fetchCrops.fetchSingleCrop(cropId);
+        log.info("CropController : {} method : {} ",cropId,"fetchCropSingle");
+        return ResponseEntity.ok(ApiResponse.ok(cropResponse));
+    }
+
+
 }

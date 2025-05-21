@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import nym.nym.crop.adapter.out.persistence.CropEntity;
+import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
 import nym.nym.global.common.entity.BaseEntity;
 import nym.nym.user.adapter.out.persistence.UserEntity;
 

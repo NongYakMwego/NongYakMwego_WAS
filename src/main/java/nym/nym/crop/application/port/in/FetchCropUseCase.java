@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface FetchCropUseCase {
     List<CropResponse> fetchCropByList(String cropName);
+    CropResponse fetchSingleCrop(Long cropId);
 }

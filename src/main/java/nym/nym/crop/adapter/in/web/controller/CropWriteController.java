@@ -7,11 +7,9 @@ import nym.nym.crop.adapter.in.web.CropResponse;
 import nym.nym.crop.application.port.in.CreateCropCommand;
 import nym.nym.crop.application.port.in.CreateCropUseCase;
 import nym.nym.global.common.dto.ApiResponse;
-import nym.nym.mapper.CropMapper;
+import nym.nym.crop.adapter.out.persistence.mapper.CropMapper;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor

@@ -8,7 +8,7 @@ import nym.nym.crop.application.port.in.CropUseCase;
 import nym.nym.crop.application.port.out.CreateCropPort;
 import nym.nym.crop.application.port.out.FetchCropPort;
 import nym.nym.crop.domain.Crop;
-import nym.nym.mapper.CropMapper;
+import nym.nym.crop.adapter.out.persistence.mapper.CropMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

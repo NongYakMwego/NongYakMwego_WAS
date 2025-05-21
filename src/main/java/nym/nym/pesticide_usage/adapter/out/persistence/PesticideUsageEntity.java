@@ -3,7 +3,7 @@ package nym.nym.pesticide_usage.adapter.out.persistence;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import nym.nym.crop.adapter.out.persistence.CropEntity;
+import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
 import nym.nym.estate.adapter.out.persistence.EstateEntity;
 import nym.nym.global.common.entity.BaseEntity;
 import nym.nym.pesticide.adapter.out.persistence.PesticideEntity;

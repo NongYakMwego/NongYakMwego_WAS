@@ -1,27 +1,28 @@
-package nym.nym.mapper;
+package nym.nym.crop.adapter.out.persistence.mapper;
 
-import nym.nym.crop.adapter.out.persistence.CropDetail;
-import nym.nym.crop.adapter.out.persistence.CropEntity;
-import nym.nym.application.port.in.command.CropCommand;
 import nym.nym.crop.adapter.in.web.CropRequest;
 import nym.nym.crop.adapter.in.web.CropResponse;
+import nym.nym.crop.adapter.out.persistence.entity.CropDetail;
+import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
+import nym.nym.crop.application.port.in.CreateCropCommand;
 import nym.nym.crop.domain.Crop;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CropMapperImpl implements CropMapper{
     @Override
-    public CropCommand requestDtoToCommand(CropRequest cropRequest) {
+    public CreateCropCommand requestDtoToCommand(CropRequest cropRequest) {
         return null;
     }
 
     @Override
-    public Crop commandToDomain(CropCommand cropCommand) {
+    public Crop commandToDomain(CreateCropCommand cropCommand) {
         return null;
     }
 
     @Override
     public CropEntity domainToEntity(Crop crop) {
         return CropEntity.builder()
-                .cropId(crop.getCropId())
                 .cropDetail(new CropDetail(crop.getCropDescription(),crop.getCropName()))
                 .build();
     }

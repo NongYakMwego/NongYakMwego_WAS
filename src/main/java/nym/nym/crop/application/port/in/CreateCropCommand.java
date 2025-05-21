@@ -2,7 +2,7 @@ package nym.nym.crop.application.port.in;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
-import nym.nym.crop.adapter.out.persistence.CropDetail;
+import nym.nym.crop.adapter.out.persistence.entity.CropDetail;
 import nym.nym.global.common.type.ErrorCode;
 import nym.nym.global.exception.CustomException;
 
