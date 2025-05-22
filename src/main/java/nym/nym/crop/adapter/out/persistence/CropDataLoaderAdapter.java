@@ -7,6 +7,7 @@ import nym.nym.crop.application.port.out.CreateCropPort;
 import nym.nym.crop.domain.Crop;
 import nym.nym.data.application.port.out.DataLoaderPort;
 import nym.nym.data.application.port.out.ExcelDataReaderPort;
+import nym.nym.global.common.annotaion.CustomLog;
 import nym.nym.global.common.annotaion.PersistenceAdapter;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -27,6 +28,7 @@ public class CropDataLoaderAdapter implements DataLoaderPort<Crop> {
     private String cropDataPath;
 
     @PostConstruct
+    @CustomLog
     public void loadData() {
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream(cropDataPath)) {
             List<Map<String, String>> rawData = excelDataReaderPort.read(inputStream);
@@ -35,7 +37,6 @@ public class CropDataLoaderAdapter implements DataLoaderPort<Crop> {
                             row.get("서브내용1"),
                             row.get("제목")
                     )).toList();
-            log.info("");
             load(crops);
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
@@ -43,6 +44,7 @@ public class CropDataLoaderAdapter implements DataLoaderPort<Crop> {
     }
 
     @Override
+    @CustomLog
     public void load(List<Crop> data) {
         data.forEach(createCropPort::createCrop);
     }

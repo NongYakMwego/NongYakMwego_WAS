@@ -11,6 +11,7 @@ import nym.nym.crop.application.port.out.FetchCropPort;
 import nym.nym.crop.domain.Crop;
 import nym.nym.crop.adapter.out.persistence.mapper.CropMapper;
 import nym.nym.crop.domain.CropInfo;
+import nym.nym.global.common.annotaion.CustomLog;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -36,9 +37,9 @@ public class CropService implements CreateCropUseCase, FetchCropUseCase {
      * @return 작물 DTO 리스트를 반환합니다.
      */
     @Override
+    @CustomLog
     public List<CropResponse> fetchCropByList(String cropName) {
         List<CropInfo> cropResponses= cropFetchPort.fetchCrops(cropName);
-        log.info("CropService : {}  method : {} ",cropName,"fetchCrops");
 
         return cropResponses.stream()
                 .map(cropInfo -> CropResponse.builder()
@@ -49,10 +50,10 @@ public class CropService implements CreateCropUseCase, FetchCropUseCase {
     }
 
     @Override
+    @CustomLog
     public CropResponse fetchSingleCrop(Long cropId) {
         //1. 조회
         Crop cropResponse=cropFetchPort.fetchCrop(cropId);
-        log.info("CropService : {}  method : {} ",cropId,"fetchSingleCrop");
 
         //2. Domain -> Response
         return cropMapper.domainToResponseDto(cropResponse);

@@ -8,6 +8,7 @@ import nym.nym.crop.application.port.out.CreateCropPort;
 import nym.nym.crop.application.port.out.FetchCropPort;
 import nym.nym.crop.domain.Crop;
 import nym.nym.crop.domain.CropInfo;
+import nym.nym.global.common.annotaion.CustomLog;
 import nym.nym.global.common.annotaion.PersistenceAdapter;
 
 import java.util.List;
@@ -27,18 +28,17 @@ public class CropPersistenceAdapter implements CreateCropPort, FetchCropPort {
      * @return 도메인 향태 작물 리스트 조회
      */
     @Override
+    @CustomLog
     public List<CropInfo> fetchCrops(String cropName) {
         //작물Info 엔티티 조회
-        log.info("CropRepository : {} method : {}",cropName,"findByCropDetail_CropNameContaining");
         return cropRepository.fetchCropsList(cropName);
     }
 
     @Override
+    @CustomLog
     public Crop fetchCrop(Long cropId) {
         //1. cropEntity 조회
         CropEntity cropEntity=cropRepository.fetchCropSingle(cropId);
-        log.info("CropPersistenceAdapter : {} method : {} ",cropEntity.getCropId(),"fetchCrop");
-
         //2. crop 도메인으로 변경
         return cropMapper.entityToDomain(cropEntity);
     }
@@ -50,10 +50,10 @@ public class CropPersistenceAdapter implements CreateCropPort, FetchCropPort {
      */
 
     @Override
+    @CustomLog
     public Crop createCrop(Crop crop) {
         CropEntity cropEntity=cropMapper.domainToEntity(crop);
         CropEntity savedCropEntity=cropRepository.save(cropEntity);
-        log.info("CropRepositoryAdapter : {} method : {}",crop, "createCrop");
         return cropMapper.entityToDomain(savedCropEntity);
     }
 }

@@ -28,8 +28,6 @@ public class CropQueryController {
             @RequestParam(value = "cropName",defaultValue = "") String cropName
     ){
         List<CropResponse> cropResponses=fetchCrops.fetchCropByList(cropName);
-        log.info("CropController : {} method : {} ",cropName,"fetchCrop");
-
         return ResponseEntity.ok(ApiResponse.ok(cropResponses));
     }
 
@@ -39,7 +37,6 @@ public class CropQueryController {
             @RequestParam("cropId") Long cropId
     ){
         CropResponse cropResponse=fetchCrops.fetchSingleCrop(cropId);
-        log.info("CropController : {} method : {} ",cropId,"fetchCropSingle");
         return ResponseEntity.ok(ApiResponse.ok(cropResponse));
     }
 

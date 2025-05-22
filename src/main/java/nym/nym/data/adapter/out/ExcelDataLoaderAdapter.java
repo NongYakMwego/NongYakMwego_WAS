@@ -3,6 +3,7 @@ package nym.nym.data.adapter.out;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nym.nym.data.application.port.out.ExcelDataReaderPort;
+import nym.nym.global.common.annotaion.CustomLog;
 import nym.nym.global.common.annotaion.PersistenceAdapter;
 import org.apache.poi.ss.usermodel.*;
 import java.io.IOException;
@@ -18,6 +19,7 @@ import java.util.Map;
 public class ExcelDataLoaderAdapter implements ExcelDataReaderPort {
 
     @Override
+    @CustomLog
     public List<Map<String, String>> read(InputStream inputStream) {
         List<Map<String,String>> data=new ArrayList<>();
         try (Workbook workbook= WorkbookFactory.create(inputStream)){
@@ -66,9 +68,8 @@ public class ExcelDataLoaderAdapter implements ExcelDataReaderPort {
                 }
             }
         }catch (IOException e){
-            log.error("ExcelDataLoaderAdapter  method : {} ","read");
+            throw new RuntimeException(e.getMessage());
         }
-        log.info("ExcelCropReaderImpl  method : {} ","readCropsFromExcel");
         return data;
     }
 }
