@@ -52,6 +52,7 @@ public class CropService implements CreateCropUseCase, FetchCropUseCase {
     public CropResponse fetchSingleCrop(Long cropId) {
         //1. 조회
         Crop cropResponse=cropFetchPort.fetchCrop(cropId);
+        log.info("CropService : {}  method : {} ",cropId,"fetchSingleCrop");
 
         //2. Domain -> Response
         return cropMapper.domainToResponseDto(cropResponse);

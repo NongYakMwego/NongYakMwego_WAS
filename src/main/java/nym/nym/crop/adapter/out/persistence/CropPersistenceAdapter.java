@@ -8,8 +8,7 @@ import nym.nym.crop.application.port.out.CreateCropPort;
 import nym.nym.crop.application.port.out.FetchCropPort;
 import nym.nym.crop.domain.Crop;
 import nym.nym.crop.domain.CropInfo;
-import nym.nym.global.common.PersistenceAdapter;
-import org.springframework.stereotype.Component;
+import nym.nym.global.common.annotaion.PersistenceAdapter;
 
 import java.util.List;
 

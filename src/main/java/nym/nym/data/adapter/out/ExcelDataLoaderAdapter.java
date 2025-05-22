@@ -3,7 +3,7 @@ package nym.nym.data.adapter.out;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nym.nym.data.application.port.out.ExcelDataReaderPort;
-import nym.nym.global.common.PersistenceAdapter;
+import nym.nym.global.common.annotaion.PersistenceAdapter;
 import org.apache.poi.ss.usermodel.*;
 import java.io.IOException;
 import java.io.InputStream;
