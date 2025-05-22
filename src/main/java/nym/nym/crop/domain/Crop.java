@@ -4,6 +4,7 @@ import lombok.*;
 
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Crop {
+    @Getter
     private Long cropId;
     @Getter
     private String cropDescription;

@@ -29,11 +29,19 @@ public class CropMapperImpl implements CropMapper{
 
     @Override
     public Crop entityToDomain(CropEntity crop) {
-        return null;
+        return Crop.withId(crop.getCropId()
+                ,crop.getCropDetail().getCropDescription()
+                ,crop.getCropDetail().getCropName()
+        );
     }
 
     @Override
     public CropResponse domainToResponseDto(Crop crop) {
-        return null;
+        return CropResponse.builder()
+                .cropName(crop.getCropName())
+                .cropId(crop.getCropId())
+                .cropDescription(crop.getCropDescription())
+                .build();
+
     }
 }

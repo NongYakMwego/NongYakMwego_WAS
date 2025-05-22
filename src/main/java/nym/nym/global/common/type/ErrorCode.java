@@ -30,7 +30,7 @@ public enum ErrorCode {
      * application-service:     2
      * domain:                  3
      * adapter-in:              4
-     * adapter:                 5
+     * adapter-out:             5
      * <p>
      * - Error Num
      * 01 ~ 99 (Increasing Num From 01)
@@ -44,7 +44,15 @@ public enum ErrorCode {
      * 유효성 검증
      */
     REQUIRE_GREATER_THAN_ZERO_CROP(20101,HttpStatus.BAD_REQUEST,"유효하지 않은 숫자입니다. 1이상 입력해주세요."),
-    REQUIRE_IS_NOT_NULL_CROP_NAME(20102,HttpStatus.BAD_REQUEST,"작물 이름 입력 시 빈칸 또는 공백 입력은 불가합니다.");
+    REQUIRE_IS_NOT_NULL_CROP_NAME(20102,HttpStatus.BAD_REQUEST,"작물 이름 입력 시 빈칸 또는 공백 입력은 불가합니다.")
+
+    /*
+    * 작물
+    * */
+
+
+
+    ;
     private final Integer code;
     private final HttpStatus httpStatus;
     private final String message;

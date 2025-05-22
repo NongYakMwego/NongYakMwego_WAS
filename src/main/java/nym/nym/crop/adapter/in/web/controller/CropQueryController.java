@@ -23,7 +23,7 @@ public class CropQueryController {
      */
     @GetMapping("/fetch-list")
     public ResponseEntity<ApiResponse<List<CropResponse>>> fetchCrops(
-            @RequestParam("cropName") String cropName
+            @RequestParam(value = "cropName",defaultValue = "") String cropName
     ){
         List<CropResponse> cropResponses=fetchCrops.fetchCropByList(cropName);
         log.info("CropController : {} method : {} ",cropName,"fetchCrop");

@@ -38,10 +38,6 @@ public class CropEntity extends BaseEntity {
     @OneToMany(mappedBy = "crop",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<PesticideEntity> pesticides=new ArrayList<>();
 
-    //토지랑 다대일 양방향
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "estate_id",nullable = false)
-    private EstateEntity estate;
 
     //농작물-해충 중간테이블 매핑
     @OneToMany(mappedBy = "crop",cascade = CascadeType.ALL,orphanRemoval = true)

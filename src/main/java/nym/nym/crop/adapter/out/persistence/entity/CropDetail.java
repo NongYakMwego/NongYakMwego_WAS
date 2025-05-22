@@ -15,11 +15,11 @@ import lombok.NoArgsConstructor;
 public class CropDetail {
     //작물 설명
     @Lob
-    @Column(name = "crop_description", columnDefinition = "TEXT")
+    @Column(name = "crop_description", columnDefinition = "text")
     private String cropDescription;
 
     //농작물 이름
-    @Column(name = "crop_name",length = 50,unique = true,nullable = false)
+    @Column(name = "crop_name",unique = true,nullable = false)
     private String cropName;
 
 

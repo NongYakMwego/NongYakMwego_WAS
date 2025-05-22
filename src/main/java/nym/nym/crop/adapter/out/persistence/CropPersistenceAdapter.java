@@ -8,12 +8,13 @@ import nym.nym.crop.application.port.out.CreateCropPort;
 import nym.nym.crop.application.port.out.FetchCropPort;
 import nym.nym.crop.domain.Crop;
 import nym.nym.crop.domain.CropInfo;
+import nym.nym.global.common.PersistenceAdapter;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 
 @RequiredArgsConstructor
-@Component
+@PersistenceAdapter("cropPersistenceAdapter")
 @Slf4j
 
 public class CropPersistenceAdapter implements CreateCropPort, FetchCropPort {
@@ -37,6 +38,7 @@ public class CropPersistenceAdapter implements CreateCropPort, FetchCropPort {
     public Crop fetchCrop(Long cropId) {
         //1. cropEntity 조회
         CropEntity cropEntity=cropRepository.fetchCropSingle(cropId);
+        log.info("CropPersistenceAdapter : {} method : {} ",cropEntity.getCropId(),"fetchCrop");
 
         //2. crop 도메인으로 변경
         return cropMapper.entityToDomain(cropEntity);

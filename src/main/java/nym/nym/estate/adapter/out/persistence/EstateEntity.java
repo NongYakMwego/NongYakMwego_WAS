@@ -7,6 +7,7 @@ import nym.nym.pesticide_usage.adapter.out.persistence.PesticideUsageEntity;
 import nym.nym.user.adapter.out.persistence.UserEntity;
 import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
 import nym.nym.global.common.entity.BaseEntity;
+import nym.nym.user_crop.adapter.out.persistence.UserCropEntity;
 import org.hibernate.annotations.UuidGenerator;
 
 import java.util.ArrayList;
@@ -31,9 +32,9 @@ public class EstateEntity extends BaseEntity {
     @OneToMany(mappedBy = "estate",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<PesticideUsageEntity> pesticideUsages=new ArrayList<>();
 
-    //농작물이랑 일대다 양방향
+    //유저-농작물이랑 일대다 양방향
     @OneToMany(mappedBy = "estate",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<CropEntity> crops=new ArrayList<>();
+    private List<UserCropEntity> userCrops=new ArrayList<>();
 
     //유저랑 다대일 양방향
     @ManyToOne(cascade = CascadeType.ALL)

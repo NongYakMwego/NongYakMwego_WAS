@@ -17,7 +17,7 @@ public interface CropRepository extends JpaRepository<CropEntity,Long> {
      */
     @Query("SELECT new nym.nym.crop.domain.CropInfo(C.cropId,C.cropDetail.cropName) " +
             "FROM CropEntity AS C " +
-            "WHERE C.cropDetail.cropName LIKE  :cropName " +
+            "WHERE C.cropDetail.cropName LIKE  %:cropName% " +
             "ORDER BY C.cropDetail.cropName ASC ")
     List<CropInfo> fetchCropsList(@Param("cropName") String cropName);
 

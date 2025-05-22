@@ -5,8 +5,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
+import nym.nym.estate.adapter.out.persistence.EstateEntity;
 import nym.nym.global.common.entity.BaseEntity;
 import nym.nym.user.adapter.out.persistence.UserEntity;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -30,4 +33,8 @@ public class UserCropEntity extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")
     private UserEntity user;
+
+    @ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+    @JoinColumn(name = "estate_id")
+    private EstateEntity estate;
 }
