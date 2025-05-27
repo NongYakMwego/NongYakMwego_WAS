@@ -24,7 +24,7 @@ public class CropDataLoaderAdapter implements DataLoaderPort<Crop> {
     private final ExcelDataReaderPort excelDataReaderPort;
 
     //엑셀 파일 경로
-    @Value("init-data/cleaned_crop.xlsx")
+    @Value("init-data/crop_final.xlsx")
     private String cropDataPath;
 
     @PostConstruct
