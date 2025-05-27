@@ -24,6 +24,7 @@ public class CropMapperImpl implements CropMapper{
     public CropEntity domainToEntity(Crop crop) {
         return CropEntity.builder()
                 .cropDetail(new CropDetail(crop.getCropDescription(),crop.getCropName()))
+                .cropCategory(crop.getCropCategory())
                 .build();
     }
 
@@ -32,6 +33,7 @@ public class CropMapperImpl implements CropMapper{
         return Crop.withId(crop.getCropId()
                 ,crop.getCropDetail().getCropDescription()
                 ,crop.getCropDetail().getCropName()
+                ,crop.getCropCategory()
         );
     }
 

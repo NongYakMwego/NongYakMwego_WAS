@@ -2,6 +2,7 @@ package nym.nym.crop.adapter.out.persistence.entity;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import nym.nym.crop.domain.Crop;
 
 @Getter
 @RequiredArgsConstructor
@@ -14,4 +15,12 @@ public enum CropCategory {
 
     private final String msg;
 
+    public static CropCategory fromMsg(String msg) {
+        for (CropCategory category : values()) {
+            if (category.getMsg().equals(msg)) {
+                return category;
+            }
+        }
+        return null;
+    }
 }
