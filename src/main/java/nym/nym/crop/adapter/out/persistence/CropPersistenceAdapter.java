@@ -23,7 +23,7 @@ public class CropPersistenceAdapter implements CreateCropPort, FetchCropPort {
 
 
     /**
-     * @apiNote 작물 목록 조회 메서드
+     * @apiNote 작물 다건 조회 메서드
      * @param cropName 작물 이름
      * @return 도메인 향태 작물 리스트 조회
      */
@@ -34,6 +34,11 @@ public class CropPersistenceAdapter implements CreateCropPort, FetchCropPort {
         return cropRepository.fetchCropsList(cropName);
     }
 
+    /**
+     * @apiNote 작물 단건 조회 메서드
+     * @param cropId 작물Id
+     * @return Crop 도메인
+     */
     @Override
     @CustomLog
     public Crop fetchCrop(Long cropId) {
