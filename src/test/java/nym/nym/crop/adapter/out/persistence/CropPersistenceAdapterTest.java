@@ -1,6 +1,7 @@
 package nym.nym.crop.adapter.out.persistence;
 
 import nym.nym.crop.adapter.out.persistence.entity.CropCategory;
+import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
 import nym.nym.crop.adapter.out.persistence.mapper.CropMapperImpl;
 import nym.nym.crop.domain.Crop;
 import nym.nym.crop.domain.CropInfo;
@@ -19,8 +20,10 @@ import org.springframework.test.context.jdbc.SqlGroup;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Import({CropPersistenceAdapter.class, CropMapperImpl.class})
@@ -104,5 +107,24 @@ class CropPersistenceAdapterTest {
         assertThat(exception.getErrorCode()).isEqualTo(ErrorCode.NOT_EXIST_CROP_ID);
     }
 
+    @Test
+    @DisplayName("작물 도메인을 생성한다.")
+    public void createCrop_SUCCESS(){
+        //given
+        Crop crop=Crop.withoutId("설명","고추",CropCategory.FOOD);
+
+        //when
+        Crop savedCrop=cropPersistenceAdapter.createCrop(crop);
+
+        //then
+        assertNotNull(savedCrop);
+        assertNotNull(savedCrop.getCropId());
+        assertEquals(savedCrop.getCropName(),crop.getCropName());
+        assertEquals(savedCrop.getCropDescription(),crop.getCropDescription());
+        assertEquals(savedCrop.getCropCategory(),crop.getCropCategory());
+
+        Optional<CropEntity> foundEntity=cropRepository.findById(savedCrop.getCropId());
+        assertTrue(foundEntity.isPresent());
+    }
 
 }
