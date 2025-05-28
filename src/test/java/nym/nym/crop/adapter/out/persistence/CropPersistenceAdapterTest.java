@@ -1,7 +1,12 @@
 package nym.nym.crop.adapter.out.persistence;
 
+import nym.nym.crop.adapter.out.persistence.entity.CropCategory;
 import nym.nym.crop.adapter.out.persistence.mapper.CropMapperImpl;
+import nym.nym.crop.domain.Crop;
 import nym.nym.crop.domain.CropInfo;
+import nym.nym.global.common.type.ErrorCode;
+import nym.nym.global.exception.CustomException;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,10 +76,33 @@ class CropPersistenceAdapterTest {
     @DisplayName("작물Id로 작물을 단건 조회한다.")
     public void fetchCrop_SUCCESS(){
         //given
+        Long findId=1L;
 
         //when
+        Crop findCrop=cropPersistenceAdapter.fetchCrop(findId);
 
         //then
+        assertThat(findCrop).isNotNull();
+        assertThat(findCrop.getCropDescription()).isEqualTo("설명1");
+        assertThat(findCrop.getCropCategory()).isEqualTo(CropCategory.FOOD);
+        assertThat(findCrop.getCropName()).isEqualTo("a");
+        assertThat(findCrop.getCropId()).isEqualTo(1L);
     }
+
+    @Test
+    @DisplayName("작물Id로 작물을 단건 조회시 존재하지 않으면 CustomException 예외를 반환한다.")
+    public void fetchCrop_FAIL(){
+        //given
+        Long findId=99999L;
+
+        //when
+        CustomException exception=org.junit.jupiter.api.Assertions.assertThrows(CustomException.class,
+                ()->cropPersistenceAdapter.fetchCrop(findId)
+        );
+
+        //then
+        assertThat(exception.getErrorCode()).isEqualTo(ErrorCode.NOT_EXIST_CROP_ID);
+    }
+
 
 }

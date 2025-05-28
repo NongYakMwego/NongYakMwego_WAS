@@ -10,6 +10,8 @@ import nym.nym.crop.domain.Crop;
 import nym.nym.crop.domain.CropInfo;
 import nym.nym.global.common.annotaion.CustomLog;
 import nym.nym.global.common.annotaion.PersistenceAdapter;
+import nym.nym.global.common.type.ErrorCode;
+import nym.nym.global.exception.CustomException;
 
 import java.util.List;
 
@@ -43,7 +45,8 @@ public class CropPersistenceAdapter implements CreateCropPort, FetchCropPort {
     @CustomLog
     public Crop fetchCrop(Long cropId) {
         //1. cropEntity 조회
-        CropEntity cropEntity=cropRepository.fetchCropSingle(cropId);
+        CropEntity cropEntity=cropRepository.fetchCropSingle(cropId)
+                .orElseThrow(()->new CustomException(ErrorCode.NOT_EXIST_CROP_ID));
         //2. crop 도메인으로 변경
         return cropMapper.entityToDomain(cropEntity);
     }
