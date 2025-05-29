@@ -5,7 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import nym.nym.global.common.entity.BaseEntity;
-import nym.nym.pest.adapter.out.persistence.PestEntity;
+import nym.nym.pest_disease.adapter.out.persistence.PestDiseaseEntity;
+import nym.nym.pest_disease.adapter.out.persistence.PestEntity;
 import nym.nym.user.adapter.out.persistence.UserEntity;
 
 @AllArgsConstructor
@@ -26,6 +27,6 @@ public class UserPestEntity extends BaseEntity {
 
     //해충 테이블과 다대일 매핑
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pest_id")
-    private PestEntity pest;
+    @JoinColumn(name = "pest_disease_id")
+    private PestDiseaseEntity pestDisease;
 }

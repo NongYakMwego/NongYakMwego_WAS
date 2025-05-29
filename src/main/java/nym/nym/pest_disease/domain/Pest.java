@@ -1,4 +1,4 @@
-package nym.nym.pest.domain;
+package nym.nym.pest_disease.domain;
 
 import lombok.*;
 

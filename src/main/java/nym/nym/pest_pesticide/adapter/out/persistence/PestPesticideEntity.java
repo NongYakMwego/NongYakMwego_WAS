@@ -4,7 +4,8 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import nym.nym.global.common.entity.BaseEntity;
-import nym.nym.pest.adapter.out.persistence.PestEntity;
+import nym.nym.pest_disease.adapter.out.persistence.PestDiseaseEntity;
+import nym.nym.pest_disease.adapter.out.persistence.PestEntity;
 import nym.nym.pesticide.adapter.out.persistence.PesticideEntity;
 
 @Entity
@@ -22,6 +23,6 @@ public class PestPesticideEntity extends BaseEntity {
     private PesticideEntity pesticide;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "pest_id",nullable = false)
-    private PestEntity pest;
+    @JoinColumn(name = "pest_disease_id",nullable = false)
+    private PestDiseaseEntity pestDisease;
 }

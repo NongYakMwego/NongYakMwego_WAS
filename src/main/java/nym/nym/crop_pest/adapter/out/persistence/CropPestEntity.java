@@ -3,7 +3,7 @@ package nym.nym.crop_pest.adapter.out.persistence;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import nym.nym.pest.adapter.out.persistence.PestEntity;
+import nym.nym.pest_disease.adapter.out.persistence.PestDiseaseEntity;
 import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
 import nym.nym.global.common.entity.BaseEntity;
 
@@ -26,6 +26,6 @@ public class CropPestEntity extends BaseEntity {
     private CropEntity crop;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "pest_id",nullable = false)
-    private PestEntity pest;
+    @JoinColumn(name = "pest_disease_id",nullable = false)
+    private PestDiseaseEntity pestDisease;
 }
