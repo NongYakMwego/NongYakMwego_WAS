@@ -44,11 +44,12 @@ public enum ErrorCode {
      * 유효성 검증
      */
     REQUIRE_GREATER_THAN_ZERO_CROP(20101,HttpStatus.BAD_REQUEST,"유효하지 않은 숫자입니다. 1이상 입력해주세요."),
-    REQUIRE_IS_NOT_NULL_CROP_NAME(20102,HttpStatus.BAD_REQUEST,"작물 이름 입력 시 빈칸 또는 공백 입력은 불가합니다.")
+    REQUIRE_IS_NOT_NULL_CROP_NAME(20102,HttpStatus.BAD_REQUEST,"작물 이름 입력 시 빈칸 또는 공백 입력은 불가합니다."),
 
     /*
     * 작물
     * */
+    NOT_EXIST_CROP_ID(200501,HttpStatus.NOT_FOUND,"존재하지 않은 작물입니다.")
 
 
 

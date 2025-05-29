@@ -3,10 +3,7 @@ package nym.nym.crop.application.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nym.nym.crop.adapter.in.web.CropResponse;
-import nym.nym.crop.application.port.in.CreateCropCommand;
-import nym.nym.crop.application.port.in.CreateCropUseCase;
 import nym.nym.crop.application.port.in.FetchCropUseCase;
-import nym.nym.crop.application.port.out.CreateCropPort;
 import nym.nym.crop.application.port.out.FetchCropPort;
 import nym.nym.crop.domain.Crop;
 import nym.nym.crop.adapter.out.persistence.mapper.CropMapper;
@@ -21,15 +18,10 @@ import java.util.List;
 @Service
 @Slf4j
 @Transactional(readOnly = true)
-public class CropService implements CreateCropUseCase, FetchCropUseCase {
+public class CropService implements  FetchCropUseCase {
     private final FetchCropPort cropFetchPort;
     private final CropMapper cropMapper;
 
-    @Transactional
-    @Override
-    public CropResponse registerCrop(CreateCropCommand cropCommand) {
-        return null;
-    }
 
     /**
      * @apiNote 작물 리스트를 반환하는 메서드

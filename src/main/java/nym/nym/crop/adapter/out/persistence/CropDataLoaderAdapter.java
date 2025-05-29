@@ -3,6 +3,7 @@ package nym.nym.crop.adapter.out.persistence;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import nym.nym.crop.adapter.out.persistence.entity.CropCategory;
 import nym.nym.crop.application.port.out.CreateCropPort;
 import nym.nym.crop.domain.Crop;
 import nym.nym.data.application.port.out.DataLoaderPort;
@@ -24,7 +25,7 @@ public class CropDataLoaderAdapter implements DataLoaderPort<Crop> {
     private final ExcelDataReaderPort excelDataReaderPort;
 
     //엑셀 파일 경로
-    @Value("init-data/cleaned_crop.xlsx")
+    @Value("init-data/crop_final.xlsx")
     private String cropDataPath;
 
     @PostConstruct
@@ -34,8 +35,10 @@ public class CropDataLoaderAdapter implements DataLoaderPort<Crop> {
             List<Map<String, String>> rawData = excelDataReaderPort.read(inputStream);
             List<Crop> crops = rawData.stream()
                     .map(row -> Crop.withoutId(
-                            row.get("서브내용1"),
-                            row.get("제목")
+                            row.get("작물설명"),
+                            row.get("작물명"),
+                            CropCategory.fromMsg(row.get("카테고리"))
+
                     )).toList();
             load(crops);
         } catch (IOException e) {
