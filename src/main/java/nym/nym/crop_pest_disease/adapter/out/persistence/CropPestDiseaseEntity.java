@@ -2,6 +2,7 @@ package nym.nym.crop_pest_disease.adapter.out.persistence;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.NoArgsConstructor;
 import nym.nym.pest_disease.adapter.out.persistence.entity.PestDiseaseEntity;
 import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
@@ -10,6 +11,7 @@ import nym.nym.global.common.entity.BaseEntity;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 @Table(name = "crop_pest_disease")
 public class CropPestDiseaseEntity extends BaseEntity {
     @Id

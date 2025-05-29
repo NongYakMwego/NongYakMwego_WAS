@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CropRepository extends JpaRepository<CropEntity,Long> {
     /**
@@ -27,4 +28,5 @@ public interface CropRepository extends JpaRepository<CropEntity,Long> {
             "WHERE C.cropId = :cropId ")
     CropEntity fetchCropSingle(@Param("cropId") Long cropId);
 
+    Optional<CropEntity> findByCropDetail_CropName(String cropName);
 }

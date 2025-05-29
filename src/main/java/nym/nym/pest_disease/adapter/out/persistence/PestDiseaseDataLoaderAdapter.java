@@ -10,6 +10,7 @@ import nym.nym.global.common.annotaion.CustomLog;
 import nym.nym.global.common.annotaion.PersistenceAdapter;
 import nym.nym.pest_disease.application.port.out.CreatePestDiseasePort;
 import nym.nym.pest_disease.domain.PestDisease;
+import nym.nym.pest_disease.domain.PestDiseaseRegister;
 import org.springframework.beans.factory.annotation.Value;
 
 import java.io.IOException;
@@ -20,7 +21,7 @@ import java.util.Map;
 @Slf4j
 @RequiredArgsConstructor
 @PersistenceAdapter("pestDiseaseDataLoaderAdapter")
-public class PestDiseaseDataLoaderAdapter implements DataLoaderPort<PestDisease> {
+public class PestDiseaseDataLoaderAdapter implements DataLoaderPort<PestDiseaseRegister> {
     private final CreatePestDiseasePort createPestDiseasePort;
     private final ExcelDataReaderPort excelDataReaderPort;
 
@@ -32,11 +33,12 @@ public class PestDiseaseDataLoaderAdapter implements DataLoaderPort<PestDisease>
     public void loadData(){
         try(InputStream inputStream=getClass().getClassLoader().getResourceAsStream(pestDiseaseDataPath)) {
             List<Map<String,String>> rawData=excelDataReaderPort.read(inputStream);
-            List<PestDisease> pestDiseases=rawData.stream()
-                    .map(row->PestDisease.withoutId(
+            List<PestDiseaseRegister> pestDiseases=rawData.stream()
+                    .map(row->PestDiseaseRegister.of(
                             row.get("pest-diseaseNameKor"),
                             row.get("pest-diseaseNameEng"),
-                            row.get("img")
+                            row.get("img"),
+                            row.get("cropName")
                     )).toList();
             load(pestDiseases);
 
@@ -46,7 +48,9 @@ public class PestDiseaseDataLoaderAdapter implements DataLoaderPort<PestDisease>
     }
     @Override
     @CustomLog
-    public void load(List<PestDisease> data) {
-        data.forEach(createPestDiseasePort::createPestDisease);
+    public void load(List<PestDiseaseRegister> data) {
+        data.forEach(pestDisease ->
+            createPestDiseasePort.createPestDisease(pestDisease,pestDisease.getCropName())
+        );
     }
 }
