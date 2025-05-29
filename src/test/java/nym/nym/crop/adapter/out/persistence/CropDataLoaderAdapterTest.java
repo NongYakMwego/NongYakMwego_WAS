@@ -56,7 +56,7 @@ class CropDataLoaderAdapterTest {
 
     @Test
     @DisplayName("load - 작물 리스트를 받아서 각각을 생성한다")
-    void load_Success() {
+    void load_SUCCESS() {
         // given
         List<Crop> crops = Arrays.asList(
                 Crop.withoutId("빨간 토마토", "토마토", CropCategory.FRUIT),
