@@ -18,7 +18,7 @@ public class CropQueryController {
     private final FetchCropUseCase fetchCrops;
 
     /**
-     * @apiNote
+     * @apiNote 작물 정보 여러 건 조회 API
      * @param cropName 작물 이름
      * @return 작물 리스트를 조회한다.
      */
@@ -31,10 +31,15 @@ public class CropQueryController {
         return ResponseEntity.ok(ApiResponse.ok(cropResponses));
     }
 
+    /**
+     * @apiNote 작물 정보 단 건 조회 API
+     * @param cropId 작물 Id
+     * @return  작물의 세부 정보를 반환
+     */
     @GetMapping("/fetch-single")
     @CustomLog
     public ResponseEntity<ApiResponse<CropResponse>> fetchCrop(
-            @RequestParam("cropId") Long cropId
+            @RequestParam(value = "cropId") Long cropId
     ){
         CropResponse cropResponse=fetchCrops.fetchSingleCrop(cropId);
         return ResponseEntity.ok(ApiResponse.ok(cropResponse));
