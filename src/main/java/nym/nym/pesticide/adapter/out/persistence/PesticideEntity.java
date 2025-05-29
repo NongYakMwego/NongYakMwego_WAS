@@ -3,7 +3,7 @@ package nym.nym.pesticide.adapter.out.persistence;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import nym.nym.pest_pesticide.adapter.out.persistence.PestPesticideEntity;
+import nym.nym.pest_disease_pesticide.adapter.out.persistence.PestDiseasePesticideEntity;
 import nym.nym.pesticide_usage.adapter.out.persistence.PesticideUsageEntity;
 import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
 import nym.nym.global.common.entity.BaseEntity;
@@ -34,5 +34,5 @@ public class PesticideEntity extends BaseEntity {
     private CropEntity crop;
 
     @OneToMany(mappedBy = "pesticide",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<PestPesticideEntity> pestPesticides=new ArrayList<>();
+    private List<PestDiseasePesticideEntity> pestDiseasePesticides=new ArrayList<>();
 }

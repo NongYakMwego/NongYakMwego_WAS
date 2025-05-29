@@ -1,4 +1,4 @@
-package nym.nym.crop_pest.adapter.out.persistence;
+package nym.nym.crop_pest_disease.adapter.out.persistence;
 
 import nym.nym.global.common.EnumMapperType;
 

@@ -1,4 +1,4 @@
-package nym.nym.pest_disease.adapter.out.persistence;
+package nym.nym.pest_disease.adapter.out.persistence.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;

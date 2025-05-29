@@ -5,8 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import nym.nym.crop_pest.adapter.out.persistence.CropPestEntity;
-import nym.nym.estate.adapter.out.persistence.EstateEntity;
+import nym.nym.crop_pest_disease.adapter.out.persistence.CropPestDiseaseEntity;
 import nym.nym.global.common.entity.BaseEntity;
 import nym.nym.pesticide.adapter.out.persistence.PesticideEntity;
 import nym.nym.pesticide_usage.adapter.out.persistence.PesticideUsageEntity;
@@ -41,7 +40,7 @@ public class CropEntity extends BaseEntity {
 
     //농작물-해충 중간테이블 매핑
     @OneToMany(mappedBy = "crop",cascade = CascadeType.ALL,orphanRemoval = true)
-    private List<CropPestEntity> cropPests=new ArrayList<>();
+    private List<CropPestDiseaseEntity> cropPests=new ArrayList<>();
 
     //농작물-유저 중간 테이블 매핑
     @OneToMany(mappedBy = "crop",cascade = CascadeType.ALL,orphanRemoval = true)

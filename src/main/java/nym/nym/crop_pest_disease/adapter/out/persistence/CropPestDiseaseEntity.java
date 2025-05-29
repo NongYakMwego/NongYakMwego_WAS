@@ -1,21 +1,21 @@
-package nym.nym.crop_pest.adapter.out.persistence;
+package nym.nym.crop_pest_disease.adapter.out.persistence;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-import nym.nym.pest_disease.adapter.out.persistence.PestDiseaseEntity;
+import nym.nym.pest_disease.adapter.out.persistence.entity.PestDiseaseEntity;
 import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
 import nym.nym.global.common.entity.BaseEntity;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "crop_pest")
-public class CropPestEntity extends BaseEntity {
+@Table(name = "crop_pest_disease")
+public class CropPestDiseaseEntity extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "crop_pest_id",nullable = false,unique = true)
-    private Long cropPestId;
+    @Column(name = "crop_pest_disease_id",nullable = false,unique = true)
+    private Long cropPestDiseaseId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "severity_level")
