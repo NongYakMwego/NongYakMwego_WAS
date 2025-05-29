@@ -1,0 +1,164 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ErrorCode</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">nym.nym.global.common.type</a>
+</div>
+
+<h1>Coverage Summary for Class: ErrorCode (nym.nym.global.common.type)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ErrorCode</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package nym.nym.global.common.type;
+&nbsp;
+&nbsp;import lombok.AllArgsConstructor;
+&nbsp;import lombok.Getter;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;
+<b class="fc">&nbsp;@Getter</b>
+&nbsp;@AllArgsConstructor
+&nbsp;public enum ErrorCode {
+&nbsp;    /**
+&nbsp;     * - ERROR CODE CONVENTION
+&nbsp;     * 00       0           00
+&nbsp;     * {Domain} {Package}   {ERROR_NUM}
+&nbsp;     * &lt;p&gt;
+&nbsp;     * - Domain
+&nbsp;     * auth:                  10
+&nbsp;     * crop:                  20
+&nbsp;     * crop_pest:             30
+&nbsp;     * estate:                40
+&nbsp;     * pest:                  50
+&nbsp;     * pest_pesticide:        11
+&nbsp;     * pesticide_recommend:   12
+&nbsp;     * pesticide_usage        13
+&nbsp;     * sensor                 14
+&nbsp;     * sensor_data            15
+&nbsp;     * user                   16
+&nbsp;     * &lt;p&gt;
+&nbsp;     * - Package
+&nbsp;     * application-port:        1
+&nbsp;     * application-service:     2
+&nbsp;     * domain:                  3
+&nbsp;     * adapter-in:              4
+&nbsp;     * adapter-out:             5
+&nbsp;     * &lt;p&gt;
+&nbsp;     * - Error Num
+&nbsp;     * 01 ~ 99 (Increasing Num From 01)
+&nbsp;     * &lt;p&gt;
+&nbsp;     * e.g. review, service, 의 1번 째 정의한 Exception -&gt; 10201
+&nbsp;     */
+<b class="fc">&nbsp;    INTERNAL_SERVER_ERROR(50000,HttpStatus.INTERNAL_SERVER_ERROR,&quot;서버 내부 오류&quot;),</b>
+<b class="fc">&nbsp;    NOT_FOUND_END_POINT(40400,HttpStatus.NOT_FOUND,&quot;존재하지 않은 API입니다.&quot;),</b>
+&nbsp;
+&nbsp;    /**
+&nbsp;     * 유효성 검증
+&nbsp;     */
+<b class="fc">&nbsp;    REQUIRE_GREATER_THAN_ZERO_CROP(20101,HttpStatus.BAD_REQUEST,&quot;유효하지 않은 숫자입니다. 1이상 입력해주세요.&quot;),</b>
+<b class="fc">&nbsp;    REQUIRE_IS_NOT_NULL_CROP_NAME(20102,HttpStatus.BAD_REQUEST,&quot;작물 이름 입력 시 빈칸 또는 공백 입력은 불가합니다.&quot;),</b>
+&nbsp;
+&nbsp;    /*
+&nbsp;    * 작물
+&nbsp;    * */
+<b class="fc">&nbsp;    NOT_EXIST_CROP_ID(200501,HttpStatus.NOT_FOUND,&quot;존재하지 않은 작물입니다.&quot;)</b>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;    ;
+&nbsp;    private final Integer code;
+&nbsp;    private final HttpStatus httpStatus;
+&nbsp;    private final String message;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-29 17:35</div>
+</div>
+</body>
+</html>

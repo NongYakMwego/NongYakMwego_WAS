@@ -1,0 +1,117 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > EstateEntity</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">nym.nym.estate.adapter.out.persistence</a>
+</div>
+
+<h1>Coverage Summary for Class: EstateEntity (nym.nym.estate.adapter.out.persistence)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">EstateEntity$HibernateInstantiator</td>
+  </tr>
+  <tr>
+    <td class="name">EstateEntity$HibernateProxy</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package nym.nym.estate.adapter.out.persistence;
+&nbsp;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import lombok.AllArgsConstructor;
+&nbsp;import lombok.NoArgsConstructor;
+&nbsp;import nym.nym.pesticide_usage.adapter.out.persistence.PesticideUsageEntity;
+&nbsp;import nym.nym.user.adapter.out.persistence.UserEntity;
+&nbsp;import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
+&nbsp;import nym.nym.global.common.entity.BaseEntity;
+&nbsp;import nym.nym.user_crop.adapter.out.persistence.UserCropEntity;
+&nbsp;import org.hibernate.annotations.UuidGenerator;
+&nbsp;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.List;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;@Entity
+&nbsp;@NoArgsConstructor
+&nbsp;@AllArgsConstructor
+&nbsp;@Table(name = &quot;estate&quot;)
+&nbsp;public class EstateEntity extends BaseEntity {
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(generator = &quot;UUID&quot;)
+&nbsp;    @UuidGenerator
+&nbsp;    @Column(name = &quot;estate_id&quot;,nullable = false,unique = true)
+&nbsp;    private UUID estateId;
+&nbsp;
+&nbsp;    @Embedded
+&nbsp;    private Location location;
+&nbsp;
+&nbsp;    //농약 사용이랑 일대다 양방향
+&nbsp;    @OneToMany(mappedBy = &quot;estate&quot;,cascade = CascadeType.ALL,orphanRemoval = true)
+&nbsp;    private List&lt;PesticideUsageEntity&gt; pesticideUsages=new ArrayList&lt;&gt;();
+&nbsp;
+&nbsp;    //유저-농작물이랑 일대다 양방향
+&nbsp;    @OneToMany(mappedBy = &quot;estate&quot;,cascade = CascadeType.ALL,orphanRemoval = true)
+&nbsp;    private List&lt;UserCropEntity&gt; userCrops=new ArrayList&lt;&gt;();
+&nbsp;
+&nbsp;    //유저랑 다대일 양방향
+&nbsp;    @ManyToOne(cascade = CascadeType.ALL)
+&nbsp;    @JoinColumn(name = &quot;user_id&quot;,nullable = false)
+&nbsp;    private UserEntity user;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-29 17:35</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > CropQueryController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">nym.nym.crop.adapter.in.web.controller</a>
+</div>
+
+<h1>Coverage Summary for Class: CropQueryController (nym.nym.crop.adapter.in.web.controller)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">CropQueryController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">CropQueryController$$SpringCGLIB$$0</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (5/5)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package nym.nym.crop.adapter.in.web.controller;
+&nbsp;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import lombok.extern.slf4j.Slf4j;
+&nbsp;import nym.nym.crop.adapter.in.web.CropResponse;
+&nbsp;import nym.nym.crop.application.port.in.FetchCropUseCase;
+&nbsp;import nym.nym.global.common.annotaion.CustomLog;
+&nbsp;import nym.nym.global.common.dto.ApiResponse;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;@RestController
+&nbsp;@RequiredArgsConstructor
+&nbsp;@RequestMapping(&quot;/crop&quot;)
+<b class="fc">&nbsp;@Slf4j</b>
+&nbsp;public class CropQueryController {
+&nbsp;    private final FetchCropUseCase fetchCrops;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * @apiNote 작물 정보 여러 건 조회 API
+&nbsp;     * @param cropName 작물 이름
+&nbsp;     * @return 작물 리스트를 조회한다.
+&nbsp;     */
+&nbsp;    @GetMapping(&quot;/fetch-list&quot;)
+&nbsp;    @CustomLog
+&nbsp;    public ResponseEntity&lt;ApiResponse&lt;List&lt;CropResponse&gt;&gt;&gt; fetchCrops(
+&nbsp;            @RequestParam(value = &quot;cropName&quot;,defaultValue = &quot;&quot;) String cropName
+&nbsp;    ){
+<b class="fc">&nbsp;        List&lt;CropResponse&gt; cropResponses=fetchCrops.fetchCropByList(cropName);</b>
+<b class="fc">&nbsp;        return ResponseEntity.ok(ApiResponse.ok(cropResponses));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * @apiNote 작물 정보 단 건 조회 API
+&nbsp;     * @param cropId 작물 Id
+&nbsp;     * @return  작물의 세부 정보를 반환
+&nbsp;     */
+&nbsp;    @GetMapping(&quot;/fetch-single&quot;)
+&nbsp;    @CustomLog
+&nbsp;    public ResponseEntity&lt;ApiResponse&lt;CropResponse&gt;&gt; fetchCrop(
+&nbsp;            @RequestParam(value = &quot;cropId&quot;) Long cropId
+&nbsp;    ){
+<b class="fc">&nbsp;        CropResponse cropResponse=fetchCrops.fetchSingleCrop(cropId);</b>
+<b class="fc">&nbsp;        return ResponseEntity.ok(ApiResponse.ok(cropResponse));</b>
+&nbsp;    }
+&nbsp;
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-29 17:35</div>
+</div>
+</body>
+</html>

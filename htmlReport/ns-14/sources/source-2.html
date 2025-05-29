@@ -1,0 +1,126 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > PesticideUsageEntity</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">nym.nym.pesticide_usage.adapter.out.persistence</a>
+</div>
+
+<h1>Coverage Summary for Class: PesticideUsageEntity (nym.nym.pesticide_usage.adapter.out.persistence)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">PesticideUsageEntity$HibernateInstantiator</td>
+  </tr>
+  <tr>
+    <td class="name">PesticideUsageEntity$HibernateProxy</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package nym.nym.pesticide_usage.adapter.out.persistence;
+&nbsp;
+&nbsp;import jakarta.persistence.*;
+&nbsp;import lombok.AllArgsConstructor;
+&nbsp;import lombok.NoArgsConstructor;
+&nbsp;import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
+&nbsp;import nym.nym.estate.adapter.out.persistence.EstateEntity;
+&nbsp;import nym.nym.global.common.entity.BaseEntity;
+&nbsp;import nym.nym.pesticide.adapter.out.persistence.PesticideEntity;
+&nbsp;import org.hibernate.annotations.UuidGenerator;
+&nbsp;
+&nbsp;import java.time.LocalDateTime;
+&nbsp;import java.util.UUID;
+&nbsp;
+&nbsp;@Entity
+&nbsp;@NoArgsConstructor
+&nbsp;@AllArgsConstructor
+&nbsp;@Table(name = &quot;pesticide_usage&quot;)
+&nbsp;public class PesticideUsageEntity extends BaseEntity {
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(generator = &quot;UUID&quot;)
+&nbsp;    @UuidGenerator
+&nbsp;    private UUID usageId;
+&nbsp;
+&nbsp;    //농약 사용 날짜
+&nbsp;    @Column(name = &quot;used_date&quot;,nullable = false)
+&nbsp;    private LocalDateTime usedDate;
+&nbsp;
+&nbsp;    ///농약 사용량
+&nbsp;    @Column(name = &quot;amount_used&quot;,nullable = false)
+&nbsp;    private Integer amountUsed;
+&nbsp;
+&nbsp;    //농약 사용 단위
+&nbsp;    @Enumerated(EnumType.STRING)
+&nbsp;    @Column(name = &quot;amount_unit&quot;,nullable = false)
+&nbsp;    private UNIT unit;
+&nbsp;
+&nbsp;    //토지랑 양방향 다대일
+&nbsp;    @ManyToOne(fetch = FetchType.LAZY)
+&nbsp;    @JoinColumn(name = &quot;estate_id&quot;)
+&nbsp;    private EstateEntity estate;
+&nbsp;
+&nbsp;    //농약이랑 양방향 다대일
+&nbsp;    @ManyToOne(fetch = FetchType.LAZY)
+&nbsp;    @JoinColumn(name = &quot;pesticide_id&quot;)
+&nbsp;    private PesticideEntity pesticide;
+&nbsp;
+&nbsp;    //농작물이랑 양방향 다대일
+&nbsp;    @ManyToOne(fetch = FetchType.LAZY)
+&nbsp;    @JoinColumn(name = &quot;crop_id&quot;)
+&nbsp;    private CropEntity crop;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-29 17:35</div>
+</div>
+</body>
+</html>

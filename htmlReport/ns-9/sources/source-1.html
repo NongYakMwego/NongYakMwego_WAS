@@ -1,0 +1,208 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+  <title>Coverage Report > ExcelDataLoaderAdapter</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">nym.nym.data.adapter.out</a>
+</div>
+
+<h1>Coverage Summary for Class: ExcelDataLoaderAdapter (nym.nym.data.adapter.out)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">ExcelDataLoaderAdapter</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (2/2)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    82.4%
+  </span>
+  <span class="absValue">
+    (28/34)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">ExcelDataLoaderAdapter$$SpringCGLIB$$0</td>
+  </tr>
+  <tr>
+    <td class="name">ExcelDataLoaderAdapter$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (3/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    82.9%
+  </span>
+  <span class="absValue">
+    (29/35)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package nym.nym.data.adapter.out;
+&nbsp;
+&nbsp;import lombok.RequiredArgsConstructor;
+&nbsp;import lombok.extern.slf4j.Slf4j;
+&nbsp;import nym.nym.data.application.port.out.ExcelDataReaderPort;
+&nbsp;import nym.nym.global.common.annotaion.CustomLog;
+&nbsp;import nym.nym.global.common.annotaion.PersistenceAdapter;
+&nbsp;import org.apache.poi.ss.usermodel.*;
+&nbsp;import java.io.IOException;
+&nbsp;import java.io.InputStream;
+&nbsp;import java.util.ArrayList;
+&nbsp;import java.util.HashMap;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Map;
+&nbsp;
+&nbsp;@RequiredArgsConstructor
+&nbsp;@PersistenceAdapter(&quot;excelDataLoaderAdapter&quot;)
+<b class="fc">&nbsp;@Slf4j</b>
+&nbsp;public class ExcelDataLoaderAdapter implements ExcelDataReaderPort {
+&nbsp;
+&nbsp;    @Override
+&nbsp;    @CustomLog
+&nbsp;    public List&lt;Map&lt;String, String&gt;&gt; read(InputStream inputStream) {
+<b class="fc">&nbsp;        List&lt;Map&lt;String,String&gt;&gt; data=new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;        try (Workbook workbook= WorkbookFactory.create(inputStream)){</b>
+<b class="fc">&nbsp;            Sheet sheet=workbook.getSheetAt(0);</b>
+&nbsp;
+<b class="fc">&nbsp;            Row headerRow=sheet.getRow(0);</b>
+<b class="fc">&nbsp;            List&lt;String&gt; headers=new ArrayList&lt;&gt;();</b>
+<b class="fc">&nbsp;            for (Cell cell:headerRow){</b>
+<b class="fc">&nbsp;                headers.add(cell.getStringCellValue());</b>
+<b class="fc">&nbsp;            }</b>
+&nbsp;
+&nbsp;
+&nbsp;            // 데이터 읽기
+<b class="fc">&nbsp;            for (int i = 1; i &lt;= sheet.getLastRowNum(); i++) {</b>
+<b class="fc">&nbsp;                Row dataRow = sheet.getRow(i);</b>
+<b class="fc">&nbsp;                if (dataRow != null) {</b>
+<b class="fc">&nbsp;                    Map&lt;String, String&gt; rowData = new HashMap&lt;&gt;();</b>
+<b class="fc">&nbsp;                    for (int j = 0; j &lt; headers.size(); j++) {</b>
+<b class="fc">&nbsp;                        Cell cell = dataRow.getCell(j);</b>
+<b class="fc">&nbsp;                        String value = &quot;&quot;;</b>
+<b class="fc">&nbsp;                        if (cell != null) {</b>
+<b class="fc">&nbsp;                            switch (cell.getCellType()) {</b>
+&nbsp;                                case STRING:
+<b class="fc">&nbsp;                                    value = cell.getStringCellValue();</b>
+<b class="fc">&nbsp;                                    break;</b>
+&nbsp;                                case NUMERIC:
+<b class="fc">&nbsp;                                    if (DateUtil.isCellDateFormatted(cell)) {</b>
+<b class="nc">&nbsp;                                        value = cell.getDateCellValue().toString();</b>
+&nbsp;                                    } else {
+<b class="fc">&nbsp;                                        value = String.valueOf(cell.getNumericCellValue());</b>
+&nbsp;                                    }
+<b class="fc">&nbsp;                                    break;</b>
+&nbsp;                                case BOOLEAN:
+<b class="nc">&nbsp;                                    value = String.valueOf(cell.getBooleanCellValue());</b>
+<b class="nc">&nbsp;                                    break;</b>
+&nbsp;                                case FORMULA:
+<b class="nc">&nbsp;                                    value = cell.getCellFormula();</b>
+<b class="nc">&nbsp;                                    break;</b>
+&nbsp;                                default:
+&nbsp;                                    break;
+&nbsp;                            }
+&nbsp;                        }
+<b class="fc">&nbsp;                        rowData.put(headers.get(j), value);</b>
+&nbsp;                    }
+<b class="fc">&nbsp;                    data.add(rowData);</b>
+&nbsp;                }
+&nbsp;            }
+<b class="fc">&nbsp;        }catch (IOException e){</b>
+<b class="nc">&nbsp;            throw new RuntimeException(e.getMessage());</b>
+<b class="fc">&nbsp;        }</b>
+<b class="fc">&nbsp;        return data;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2025-05-29 17:35</div>
+</div>
+</body>
+</html>
