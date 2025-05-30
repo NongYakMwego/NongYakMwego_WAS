@@ -8,6 +8,9 @@ import nym.nym.pest_disease.adapter.out.persistence.mapper.PestDiseaseMapper;
 import nym.nym.pest_disease.application.port.in.FetchPestDiseaseUseCase;
 import nym.nym.pest_disease.application.port.out.FetchPestDiseasePort;
 import nym.nym.pest_disease.domain.PestDisease;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -28,15 +31,17 @@ public class PestDiseaseService implements FetchPestDiseaseUseCase {
      */
     @Override
     @CustomLog
-    public List<PestDiseaseResponse> fetchPestDiseaseList(Long cropId) {
-        List<PestDisease> pestDiseases=pestDiseasePort.fetchPestDiseases(cropId);
+    public Page<PestDiseaseResponse> fetchPestDiseaseList(Long cropId ,int page, int size) {
+        //1. 페이징 객체 생성
+        Pageable pageable=PageRequest.of(page,size);
+        Page<PestDisease> pestDiseases=pestDiseasePort.fetchPestDiseases(cropId,pageable);
 
-        return pestDiseases.stream()
+        return pestDiseases
                 .map(pestDisease -> PestDiseaseResponse.builder()
                         .pestDiseaseId(pestDisease.getPestDiseaseId())
                         .pestDiseaseName(pestDisease.getPestDiseaseName())
                         .imageUrl(pestDisease.getImaUrl())
-                        .build())
-                .toList();
+                        .build());
+
     }
 }

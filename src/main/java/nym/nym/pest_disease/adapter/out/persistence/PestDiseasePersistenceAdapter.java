@@ -16,6 +16,8 @@ import nym.nym.pest_disease.application.port.out.CreatePestDiseasePort;
 import nym.nym.pest_disease.application.port.out.FetchPestDiseasePort;
 import nym.nym.pest_disease.domain.PestDisease;
 import nym.nym.pest_disease.domain.PestDiseaseRegister;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
@@ -62,9 +64,8 @@ public class PestDiseasePersistenceAdapter implements CreatePestDiseasePort, Fet
     }
 
     @Override
-    public List<PestDisease> fetchPestDiseases(Long cropId) {
-        List<PestDiseaseEntity> pestDiseaseEntities= pestDiseaseRepository.fetchPestDiseaseList(cropId);
-        return pestDiseaseEntities.stream()
-                .map(pestDiseaseMapper::entityToDomain).toList();
+    public Page<PestDisease> fetchPestDiseases(Long cropId, Pageable pageable) {
+        Page<PestDiseaseEntity> pestDiseaseEntities= pestDiseaseRepository.fetchPestDiseaseList(cropId,pageable);
+        return pestDiseaseEntities.map(pestDiseaseMapper::entityToDomain);
     }
 }

@@ -6,6 +6,7 @@ import nym.nym.global.common.annotaion.CustomLog;
 import nym.nym.global.common.dto.ApiResponse;
 import nym.nym.pest_disease.adapter.in.web.PestDiseaseResponse;
 import nym.nym.pest_disease.application.port.in.FetchPestDiseaseUseCase;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,10 +25,13 @@ public class PestDiseaseQueryController {
 
     @GetMapping("/fetch-list")
     @CustomLog
-    public ResponseEntity<ApiResponse<List<PestDiseaseResponse>>> fetchPestDiseases(
-            @RequestParam(value = "cropId") Long cropId
+    public ResponseEntity<ApiResponse<Page<PestDiseaseResponse>>> fetchPestDiseases(
+            @RequestParam(value = "cropId") Long cropId,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "4") int size
     ){
-        List<PestDiseaseResponse> pestDiseaseResponses=fetchPestDiseaseUseCase.fetchPestDiseaseList(cropId);
+        Page<PestDiseaseResponse> pestDiseaseResponses=fetchPestDiseaseUseCase.fetchPestDiseaseList(cropId,page,size);
+
         return ResponseEntity.ok(ApiResponse.ok(pestDiseaseResponses));
     }
 }

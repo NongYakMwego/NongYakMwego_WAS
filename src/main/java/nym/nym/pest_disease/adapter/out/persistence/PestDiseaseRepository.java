@@ -1,11 +1,11 @@
 package nym.nym.pest_disease.adapter.out.persistence;
 
 import nym.nym.pest_disease.adapter.out.persistence.entity.PestDiseaseEntity;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-
-import java.util.List;
 import java.util.Optional;
 
 public interface PestDiseaseRepository extends JpaRepository<PestDiseaseEntity,Long> {
@@ -15,5 +15,5 @@ public interface PestDiseaseRepository extends JpaRepository<PestDiseaseEntity,L
             "JOIN C.pestDisease AS P " +
             "WHERE C.crop.cropId = :cropId " +
             "ORDER BY P.pestDiseaseName ASC")
-    List<PestDiseaseEntity> fetchPestDiseaseList(@Param("cropId")Long cropId);
+    Page<PestDiseaseEntity> fetchPestDiseaseList(@Param("cropId")Long cropId, Pageable pageable);
 }
