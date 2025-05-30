@@ -6,6 +6,7 @@ import nym.nym.crop.domain.CropInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +27,11 @@ public interface CropRepository extends JpaRepository<CropEntity,Long> {
     @Query("SELECT C " +
             "FROM CropEntity AS C " +
             "WHERE C.cropId = :cropId ")
-    CropEntity fetchCropSingle(@Param("cropId") Long cropId);
+    Optional<CropEntity> fetchCropSingle(@Param("cropId") Long cropId);
 
+    @Transactional
     Optional<CropEntity> findByCropDetail_CropName(String cropName);
+
+    @Transactional
+    boolean existsByCropDetail_CropName(String cropName);
 }

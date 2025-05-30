@@ -4,4 +4,5 @@ import nym.nym.crop.domain.Crop;
 
 public interface CreateCropPort {
     Crop createCrop(Crop crop);
+    boolean existsByName(String cropName);
 }

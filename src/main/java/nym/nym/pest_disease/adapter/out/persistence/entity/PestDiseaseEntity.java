@@ -25,10 +25,10 @@ public class PestDiseaseEntity extends BaseEntity {
     @Column(name = "pest_disease_id",nullable = false,unique = true)
     private Long pestDiseaseId;
 
-    @Embedded
-    private PestDiseaseName pestDiseaseName;
+    @Column(name = "pest_disease_name",nullable = false,length = 512,unique = true)
+    private String pestDiseaseName;
 
-    @Column(name = "img_url",nullable = true,length = 100)
+    @Column(name = "img_url",length = 1024)
     private String imgUrl;
 
     //해충-농약 중간 테이블 매핑

@@ -30,6 +30,9 @@ public class CropEntity extends BaseEntity {
     @Embedded
     private CropDetail cropDetail;
 
+    @Enumerated(EnumType.STRING)
+    private CropCategory cropCategory;
+
     //농약 사용이랑 일대다 양방향
     @OneToMany(mappedBy = "crop",cascade = CascadeType.ALL,orphanRemoval = true)
     private List<PesticideUsageEntity> pesticideUsages=new ArrayList<>();

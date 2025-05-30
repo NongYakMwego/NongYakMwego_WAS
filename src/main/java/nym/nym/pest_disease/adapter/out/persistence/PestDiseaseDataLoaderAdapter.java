@@ -12,6 +12,8 @@ import nym.nym.pest_disease.application.port.out.CreatePestDiseasePort;
 import nym.nym.pest_disease.domain.PestDisease;
 import nym.nym.pest_disease.domain.PestDiseaseRegister;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -29,14 +31,15 @@ public class PestDiseaseDataLoaderAdapter implements DataLoaderPort<PestDiseaseR
     private String pestDiseaseDataPath;
 
     @PostConstruct
+    @DependsOn("cropDataLoaderAdapter")
     @CustomLog
+    @Transactional
     public void loadData(){
         try(InputStream inputStream=getClass().getClassLoader().getResourceAsStream(pestDiseaseDataPath)) {
             List<Map<String,String>> rawData=excelDataReaderPort.read(inputStream);
             List<PestDiseaseRegister> pestDiseases=rawData.stream()
                     .map(row->PestDiseaseRegister.of(
                             row.get("pest-diseaseNameKor"),
-                            row.get("pest-diseaseNameEng"),
                             row.get("img"),
                             row.get("cropName")
                     )).toList();

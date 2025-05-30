@@ -1,13 +1,14 @@
 package nym.nym.crop_pest_disease.adapter.out.persistence;
 
-import nym.nym.global.common.EnumMapperType;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 
-public enum LEVEL implements EnumMapperType {
-    HIGH,
-    MEDIUM,
-    LOW;
-    @Override
-    public String getCode() {
-        return null;
-    }
+@Getter
+@RequiredArgsConstructor
+public enum LEVEL  {
+    HIGH("높음"),
+    MEDIUM("중간"),
+    LOW("낮음");
+
+    private final String msg;
 }

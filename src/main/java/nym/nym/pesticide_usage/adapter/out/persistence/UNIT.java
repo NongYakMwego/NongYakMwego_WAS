@@ -1,17 +1,16 @@
 package nym.nym.pesticide_usage.adapter.out.persistence;
 
 import lombok.Getter;
-import nym.nym.global.common.EnumMapperType;
+import lombok.RequiredArgsConstructor;
 
 @Getter
-public enum UNIT implements EnumMapperType {
-    mL,
-    L,
-    mg,
-    g;
+@RequiredArgsConstructor
+public enum UNIT{
+    mL("밀리리터"),
+    L("리터"),
+    mg("밀리그램"),
+    g("그램"),
+    kg("키로그램");
 
-    @Override
-    public String getCode() {
-        return name();
-    }
+    private final String msg;
 }

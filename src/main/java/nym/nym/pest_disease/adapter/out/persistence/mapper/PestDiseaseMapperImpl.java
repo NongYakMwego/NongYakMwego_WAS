@@ -1,7 +1,6 @@
 package nym.nym.pest_disease.adapter.out.persistence.mapper;
 
 import nym.nym.pest_disease.adapter.out.persistence.entity.PestDiseaseEntity;
-import nym.nym.pest_disease.adapter.out.persistence.entity.PestDiseaseName;
 import nym.nym.pest_disease.domain.PestDisease;
 import nym.nym.pest_disease.domain.PestDiseaseRegister;
 import org.springframework.stereotype.Component;
@@ -14,7 +13,7 @@ public class PestDiseaseMapperImpl implements PestDiseaseMapper{
         return PestDiseaseEntity
                 .builder()
                 .pestDiseaseId(pestDisease.getPestDiseaseId())
-                .pestDiseaseName(new PestDiseaseName(pestDisease.getPestDiseaseNameKor(),pestDisease.getPestDiseaseNameEng()))
+                .pestDiseaseName(pestDisease.getPestDiseaseName())
                 .imgUrl(pestDisease.getImaUrl())
                 .build();
     }
@@ -23,8 +22,7 @@ public class PestDiseaseMapperImpl implements PestDiseaseMapper{
     public PestDisease entityToDomain(PestDiseaseEntity pestDisease) {
         return PestDisease.withId(
                 pestDisease.getPestDiseaseId(),
-                pestDisease.getPestDiseaseName().getPestDiseaseNameKor(),
-                pestDisease.getPestDiseaseName().getPestDiseaseNameEng(),
+                pestDisease.getPestDiseaseName(),
                 pestDisease.getImgUrl()
         );
     }
@@ -33,7 +31,7 @@ public class PestDiseaseMapperImpl implements PestDiseaseMapper{
     public PestDiseaseEntity domainToEntity(PestDiseaseRegister pestDiseaseRegister) {
         return PestDiseaseEntity
                 .builder()
-                .pestDiseaseName(new PestDiseaseName(pestDiseaseRegister.getPestDiseaseNameKor(),pestDiseaseRegister.getPestDiseaseNameEng()))
+                .pestDiseaseName(pestDiseaseRegister.getPestDiseaseName())
                 .imgUrl(pestDiseaseRegister.getImaUrl())
                 .build();
     }
