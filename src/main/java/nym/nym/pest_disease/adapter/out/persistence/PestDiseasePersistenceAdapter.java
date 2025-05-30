@@ -13,14 +13,17 @@ import nym.nym.global.exception.CustomException;
 import nym.nym.pest_disease.adapter.out.persistence.entity.PestDiseaseEntity;
 import nym.nym.pest_disease.adapter.out.persistence.mapper.PestDiseaseMapper;
 import nym.nym.pest_disease.application.port.out.CreatePestDiseasePort;
+import nym.nym.pest_disease.application.port.out.FetchPestDiseasePort;
 import nym.nym.pest_disease.domain.PestDisease;
 import nym.nym.pest_disease.domain.PestDiseaseRegister;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @PersistenceAdapter("pestDiseasePersistenceAdapter")
 @Slf4j
-public class PestDiseasePersistenceAdapter implements CreatePestDiseasePort {
+public class PestDiseasePersistenceAdapter implements CreatePestDiseasePort, FetchPestDiseasePort {
     private final PestDiseaseRepository pestDiseaseRepository;
     private final PestDiseaseMapper pestDiseaseMapper;
     private final CropRepository cropRepository;
@@ -55,8 +58,13 @@ public class PestDiseasePersistenceAdapter implements CreatePestDiseasePort {
                     .build();
             cropPestDiseaseRepository.save(cropPestDisease);
         }
-
-
         return pestDiseaseMapper.entityToDomain(savedPestDisease);
+    }
+
+    @Override
+    public List<PestDisease> fetchPestDiseases(Long cropId) {
+        List<PestDiseaseEntity> pestDiseaseEntities= pestDiseaseRepository.fetchPestDiseaseList(cropId);
+        return pestDiseaseEntities.stream()
+                .map(pestDiseaseMapper::entityToDomain).toList();
     }
 }
