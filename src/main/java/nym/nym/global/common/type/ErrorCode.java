@@ -49,9 +49,13 @@ public enum ErrorCode {
     /*
     * 작물
     * */
-    NOT_EXIST_CROP_ID(200501,HttpStatus.NOT_FOUND,"존재하지 않은 작물입니다.")
+    NOT_EXIST_CROP_ID(200501,HttpStatus.NOT_FOUND,"존재하지 않은 작물입니다."),
 
 
+    /*
+     * 병해충
+     */
+    NOT_EXIST_PEST_DISEASE_NAME(500501,HttpStatus.NOT_FOUND,"존재하지 않는 병해충명입니다.")
 
     ;
     private final Integer code;

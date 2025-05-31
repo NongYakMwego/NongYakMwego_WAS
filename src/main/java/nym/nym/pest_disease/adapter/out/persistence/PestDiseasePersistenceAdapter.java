@@ -8,6 +8,7 @@ import nym.nym.crop_pest_disease.adapter.out.persistence.CropPestDiseaseEntity;
 import nym.nym.crop_pest_disease.adapter.out.persistence.CropPestDiseaseRepository;
 import nym.nym.global.common.annotaion.CustomLog;
 import nym.nym.global.common.annotaion.PersistenceAdapter;
+import nym.nym.global.common.dto.ApiResponse;
 import nym.nym.global.common.type.ErrorCode;
 import nym.nym.global.exception.CustomException;
 import nym.nym.pest_disease.adapter.out.persistence.entity.PestDiseaseEntity;
@@ -64,8 +65,10 @@ public class PestDiseasePersistenceAdapter implements CreatePestDiseasePort, Fet
     }
 
     @Override
-    public Page<PestDisease> fetchPestDiseases(Long cropId, Pageable pageable) {
-        Page<PestDiseaseEntity> pestDiseaseEntities= pestDiseaseRepository.fetchPestDiseaseList(cropId,pageable);
+    @CustomLog
+    public Page<PestDisease> fetchPestDiseases(Long cropId, String name,Pageable pageable) {
+        Page<PestDiseaseEntity> pestDiseaseEntities= pestDiseaseRepository.fetchPestDiseaseList(cropId,name,pageable);
         return pestDiseaseEntities.map(pestDiseaseMapper::entityToDomain);
     }
+
 }

@@ -7,5 +7,5 @@ import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 public interface FetchPestDiseasePort {
-    Page<PestDisease> fetchPestDiseases(Long cropId, Pageable pageable);
+    Page<PestDisease> fetchPestDiseases(Long cropId, String name,Pageable pageable);
 }

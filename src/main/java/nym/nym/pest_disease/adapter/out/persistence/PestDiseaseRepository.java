@@ -13,7 +13,7 @@ public interface PestDiseaseRepository extends JpaRepository<PestDiseaseEntity,L
     @Query("SELECT P " +
             "FROM CropPestDiseaseEntity AS C " +
             "JOIN C.pestDisease AS P " +
-            "WHERE C.crop.cropId = :cropId " +
+            "WHERE C.crop.cropId = :cropId OR C.pestDisease.pestDiseaseName LIKE %:name% "+
             "ORDER BY P.pestDiseaseName ASC")
-    Page<PestDiseaseEntity> fetchPestDiseaseList(@Param("cropId")Long cropId, Pageable pageable);
+    Page<PestDiseaseEntity> fetchPestDiseaseList(@Param("cropId")Long cropId, @Param("name")String name, Pageable pageable);
 }

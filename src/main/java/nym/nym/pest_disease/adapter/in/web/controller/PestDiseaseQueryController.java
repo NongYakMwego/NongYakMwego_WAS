@@ -26,11 +26,12 @@ public class PestDiseaseQueryController {
     @GetMapping("/fetch-list")
     @CustomLog
     public ResponseEntity<ApiResponse<Page<PestDiseaseResponse>>> fetchPestDiseases(
-            @RequestParam(value = "cropId") Long cropId,
+            @RequestParam(value = "cropId",required = false) Long cropId,
+            @RequestParam(value = "name",required = false)String name,
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "4") int size
     ){
-        Page<PestDiseaseResponse> pestDiseaseResponses=fetchPestDiseaseUseCase.fetchPestDiseaseList(cropId,page,size);
+        Page<PestDiseaseResponse> pestDiseaseResponses=fetchPestDiseaseUseCase.fetchPestDiseaseList(cropId,name,page,size);
 
         return ResponseEntity.ok(ApiResponse.ok(pestDiseaseResponses));
     }

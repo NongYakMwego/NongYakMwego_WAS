@@ -1,5 +1,6 @@
 package nym.nym.pest_disease.adapter.out.persistence.mapper;
 
+import nym.nym.pest_disease.adapter.in.web.PestDiseaseResponse;
 import nym.nym.pest_disease.adapter.out.persistence.entity.PestDiseaseEntity;
 import nym.nym.pest_disease.domain.PestDisease;
 import nym.nym.pest_disease.domain.PestDiseaseRegister;
@@ -33,6 +34,16 @@ public class PestDiseaseMapperImpl implements PestDiseaseMapper{
                 .builder()
                 .pestDiseaseName(pestDiseaseRegister.getPestDiseaseName())
                 .imgUrl(pestDiseaseRegister.getImaUrl())
+                .build();
+    }
+
+    @Override
+    public PestDiseaseResponse domainToResponseDto(PestDisease pestDisease) {
+        return PestDiseaseResponse
+                .builder()
+                .pestDiseaseId(pestDisease.getPestDiseaseId())
+                .pestDiseaseName(pestDisease.getPestDiseaseName())
+                .imageUrl(pestDisease.getImaUrl())
                 .build();
     }
 }

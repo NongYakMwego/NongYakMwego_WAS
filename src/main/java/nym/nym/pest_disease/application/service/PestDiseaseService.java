@@ -3,6 +3,8 @@ package nym.nym.pest_disease.application.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nym.nym.global.common.annotaion.CustomLog;
+import nym.nym.global.common.type.ErrorCode;
+import nym.nym.global.exception.CustomException;
 import nym.nym.pest_disease.adapter.in.web.PestDiseaseResponse;
 import nym.nym.pest_disease.adapter.out.persistence.mapper.PestDiseaseMapper;
 import nym.nym.pest_disease.application.port.in.FetchPestDiseaseUseCase;
@@ -26,22 +28,22 @@ public class PestDiseaseService implements FetchPestDiseaseUseCase {
 
     /**
      * @apiNote 병해충 다건 조회 메서드
-     * @param cropId 작물 Id
+     * @param cropId,name 작물 Id,병해충명
      * @return 병해충 응답 DTO
      */
     @Override
     @CustomLog
-    public Page<PestDiseaseResponse> fetchPestDiseaseList(Long cropId ,int page, int size) {
+    public Page<PestDiseaseResponse> fetchPestDiseaseList(Long cropId ,String name,int page, int size) {
+        //예외 name과 작물 Id 2개 모두 입력 시 에러 발생
+        if(name!=null && cropId!=null){
+            throw new CustomException(ErrorCode.NOT_FOUND_END_POINT);
+        }
         //1. 페이징 객체 생성
         Pageable pageable=PageRequest.of(page,size);
-        Page<PestDisease> pestDiseases=pestDiseasePort.fetchPestDiseases(cropId,pageable);
+        Page<PestDisease> pestDiseases=pestDiseasePort.fetchPestDiseases(cropId,name,pageable);
 
         return pestDiseases
-                .map(pestDisease -> PestDiseaseResponse.builder()
-                        .pestDiseaseId(pestDisease.getPestDiseaseId())
-                        .pestDiseaseName(pestDisease.getPestDiseaseName())
-                        .imageUrl(pestDisease.getImaUrl())
-                        .build());
+                .map(pestDiseaseMapper::domainToResponseDto);
 
     }
 }
