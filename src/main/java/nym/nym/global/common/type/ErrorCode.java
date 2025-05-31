@@ -49,8 +49,15 @@ public enum ErrorCode {
     /*
     * 작물
     * */
-    NOT_EXIST_CROP_ID(200501,HttpStatus.NOT_FOUND,"존재하지 않은 작물입니다.")
+    NOT_EXIST_CROP_ID(200501,HttpStatus.NOT_FOUND,"존재하지 않은 작물입니다."),
 
+    /*
+     * 로그인
+     */
+    EMPTY_KEY_VALUE(160501,HttpStatus.NOT_FOUND,"필수 필드 값이 없습니다."),
+    NOT_CHANGE_VALUE(160502,HttpStatus.NOT_FOUND,"값을 숫자로 변환할 수 없습니다."),
+    FAIL_KAKAO_TOKEN_PARSING(160503,HttpStatus.BAD_REQUEST,"카카오 토큰 파싱을 실패했습니다."),
+    NOT_FIND_KAKAO_ACCESS_TOKEN(160504,HttpStatus.NOT_FOUND,"카카오 엑세스 토큰을 찾을 수 없습니다.");
 
 
     ;

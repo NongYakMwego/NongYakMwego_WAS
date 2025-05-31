@@ -9,8 +9,6 @@ import nym.nym.estate.adapter.out.persistence.EstateEntity;
 import nym.nym.global.common.entity.BaseEntity;
 import nym.nym.user.adapter.out.persistence.UserEntity;
 
-import java.util.List;
-
 @Entity
 @Getter
 @AllArgsConstructor

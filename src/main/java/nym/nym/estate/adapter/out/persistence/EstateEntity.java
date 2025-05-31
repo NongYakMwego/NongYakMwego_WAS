@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import nym.nym.pesticide_usage.adapter.out.persistence.PesticideUsageEntity;
 import nym.nym.user.adapter.out.persistence.UserEntity;
-import nym.nym.crop.adapter.out.persistence.entity.CropEntity;
 import nym.nym.global.common.entity.BaseEntity;
 import nym.nym.user_crop.adapter.out.persistence.UserCropEntity;
 import org.hibernate.annotations.UuidGenerator;
